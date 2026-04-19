@@ -1,0 +1,49 @@
+HELP.md
+target/
+*.class
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+# 排除掉 jar，但保留 maven wrapper 相关的 jar
+!/.mvn/wrapper/maven-wrapper.jar
+*.log
+logs/
+
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+
+# 6. 本地敏感配置文件 (根据实际情况放开)
+# ==================================
+application.yaml
+
