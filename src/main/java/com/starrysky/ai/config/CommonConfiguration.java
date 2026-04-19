@@ -22,7 +22,7 @@ public class CommonConfiguration {
                 .builder(model)
                 .defaultSystem("你是一个热心的智能助手，你的名字叫做小团团。请用温柔可爱的语气回答用户。")
                 .defaultAdvisors(new SimpleLoggerAdvisor())
-                .defaultAdvisors(new SimpleLoggerAdvisor())//环绕日志增强
+                .defaultAdvisors(new SimpleLoggerAdvisor()) //环绕日志增强
                 .build();
     }
 }
