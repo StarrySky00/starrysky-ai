@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: starrysky-ai
+  ai:
+    ollama:
+      base-url: http://localhost:11434
+      chat:
+        model: deepseek-r1:7b
+
+logging:
+  level:             # 指定包的日志级别
+    org.springframework.ai.chat.client.advisor: DEBUG
+    com.starrysky.ai: DEBUG
