@@ -35,6 +35,8 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+
+        <!--ollama-->
         <dependency>
             <groupId>org.springframework.ai</groupId>
             <artifactId>spring-ai-starter-model-ollama</artifactId>
@@ -55,6 +57,13 @@
             <artifactId>lombok</artifactId>
             <version>1.18.36</version>
         </dependency>
+
+        <!--openai-->
+        <dependency>
+            <groupId>org.springframework.ai</groupId>
+            <artifactId>spring-ai-starter-model-openai</artifactId>
+        </dependency>
+
     </dependencies>
     <dependencyManagement>
         <dependencies>

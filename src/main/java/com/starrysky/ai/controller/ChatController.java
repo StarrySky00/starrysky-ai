@@ -1,4 +1,4 @@
-package com.starrysky.ai.controoller;
+package com.starrysky.ai.controller;
 
 import com.starrysky.ai.enums.TypeEnum;
 import com.starrysky.ai.repository.InMemoryChatHistoryRepository;

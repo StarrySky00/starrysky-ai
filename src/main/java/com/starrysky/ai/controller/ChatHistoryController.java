@@ -1,4 +1,4 @@
-package com.starrysky.ai.controoller;
+package com.starrysky.ai.controller;
 
 /**
  * @author StarrySky
