@@ -1,6 +1,7 @@
 package com.starrysky.ai.config;
 
 import com.starrysky.ai.constants.SystemConstants;
+import com.starrysky.ai.tools.CourseTools;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
 import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
@@ -21,6 +22,7 @@ public class CommonConfiguration {
     /*
      * 配置模型，也可以用其他的模型，openai的
      */
+    // 本地部署
     @Bean
     public ChatClient chatClient(OllamaChatModel model,ChatMemory chatMemory){
         return ChatClient
@@ -32,6 +34,8 @@ public class CommonConfiguration {
                         )
                 .build();
     }
+
+    // 游戏模型配置
     @Bean
     public ChatClient gameChatClient(OpenAiChatModel model, ChatMemory chatMemory){
         return ChatClient
@@ -41,6 +45,20 @@ public class CommonConfiguration {
                         new SimpleLoggerAdvisor(), //环绕日志增强
                         MessageChatMemoryAdvisor.builder(chatMemory).build()//环绕记忆增强
                 )
+                .build();
+    }
+
+    // 客服模型配置
+    @Bean
+    public ChatClient serviceChatClient(OpenAiChatModel model, ChatMemory chatMemory, CourseTools tools){
+        return ChatClient
+                .builder(model)
+                .defaultSystem(SystemConstants.SERVICE_SYSTEM_PROMPT)//系统角色
+                .defaultAdvisors(
+                        new SimpleLoggerAdvisor(), //环绕日志增强
+                        MessageChatMemoryAdvisor.builder(chatMemory).build()//环绕记忆增强
+                )
+                .defaultTools(tools) // 添加工具
                 .build();
     }
 
