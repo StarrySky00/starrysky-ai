@@ -47,4 +47,6 @@ build/
 # ==================================
 application.yaml
 交通运输生涯发展报告.pdf
-
+*.pdf
+*.properties
+*.json

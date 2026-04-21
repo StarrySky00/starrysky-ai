@@ -5,12 +5,14 @@ import com.starrysky.ai.tools.CourseTools;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
 import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
+import org.springframework.ai.chat.client.advisor.vectorstore.QuestionAnswerAdvisor;
 import org.springframework.ai.chat.memory.ChatMemory;
 import org.springframework.ai.chat.memory.MessageWindowChatMemory;
 import org.springframework.ai.observation.conventions.VectorStoreProvider;
 import org.springframework.ai.ollama.OllamaChatModel;
 import org.springframework.ai.openai.OpenAiChatModel;
 import org.springframework.ai.openai.OpenAiEmbeddingModel;
+import org.springframework.ai.vectorstore.SearchRequest;
 import org.springframework.ai.vectorstore.SimpleVectorStore;
 import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.context.annotation.Bean;
@@ -70,6 +72,27 @@ public class CommonConfiguration {
     @Bean
     public VectorStore vectorStore(OpenAiEmbeddingModel embeddingModel) {
         return SimpleVectorStore.builder(embeddingModel).build();
+    }
+
+    // pdf搜索ChatClient
+    @Bean
+    public ChatClient pdfChatClient(OpenAiChatModel model, ChatMemory chatMemory, VectorStore vectorStore) {
+        return ChatClient
+                .builder(model)// 大模型
+                .defaultSystem("请根据上下文回答问题，遇到上下文没有的问题不要随意编造")//系统角色
+                .defaultAdvisors(
+                        new SimpleLoggerAdvisor(), //环绕日志增强
+                        MessageChatMemoryAdvisor.builder(chatMemory).build(),//环绕记忆增强
+                        QuestionAnswerAdvisor
+                                .builder(vectorStore)// 添加向量搜索
+                                .searchRequest(
+                                        SearchRequest.builder()//搜索请求
+                                                .similarityThreshold(0.6d)//相似度
+                                                .topK(2) //两页
+                                                .build())
+                                .build()
+                )
+                .build();
     }
 
     /*

@@ -10,7 +10,8 @@ public enum TypeEnum {
      * 会话类型枚举
      */
     CHAT("chat"),
-    SERVICE("service")
+    SERVICE("service"),
+    PDF("pdf")
     ;
 
     private final String type;

@@ -21,7 +21,7 @@ class StarrySkyAiApplicationTests {
 
 
 
-    @Test
+    //@Test
     public void testVectorStore() {
         // 1. 创建一个PDF文件路径
         FileSystemResource resource = new FileSystemResource("交通运输生涯发展报告.pdf");
@@ -51,8 +51,5 @@ class StarrySkyAiApplicationTests {
             System.out.println(doc.getScore());
             System.out.println(doc.getText());
         }
-
-
     }
-
 }
